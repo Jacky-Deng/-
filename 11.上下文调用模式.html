@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+  <h2>上下文调用模式</h2>
+</body>
+</html>
+<script>
+  /*
+    上下文
+      代码运行的 环境
+    上下文调用模式
+  */
+  function eatFood(){
+    console.log(this);
+    console.log(this+'吧唧吧唧嘴');
+  }
+  eatFood();
+  
+  var obj = {
+    name:'jack'
+  }
+
+  // 上下文调用模式1
+  eatFood.call(obj);
+  var obj2 = {
+    name:'蓝翔学徒'
+  }
+
+  // 上下文调用模式2
+  eatFood.apply(obj2);
+
+  /*
+    方法中的this 是谁呀?
+      取决于调用方法的方式
+      直接调用函数--->window
+      方法调用--->对象
+      构造函数调用--->实例化的对象
+  */ 
+  console.log('咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚咚');
+  // 如何在上下文调用模式中 传递参数
+  function sum (a,b){
+    console.log(this);
+    return a+b;
+  }
+  console.log(sum(2,998));
+
+  // call 方法 如果要传递参数 给 函数 直接在 第二个参数开始 依次往后写即可
+  console.log(sum.call({name:'老司机'},6,660));
+  // apply 方法 如果要传递 参数 给函数 直接在第二个参数传入 数组 伪数组即可
+  console.log(sum.apply({name:'老司机'},[8,880]));
+
+</script>

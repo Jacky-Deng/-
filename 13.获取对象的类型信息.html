@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <h2>获取对象的类型</h2>
+</body>
+
+</html>
+<script>
+  // 如果获取类型
+  // var obj = {}
+  // console.log(typeof obj);
+  // // 调用 toString方法;
+  // console.log(obj.toString());
+  // var arr = [1, 2, 3, 4, 5, 6];
+  // console.log(typeof arr);
+  // console.log(arr.toString());
+
+  // // 通过上下文模式调用
+  // // 相当于 arr.toString()--->这个toString是 Object.prototype
+  // console.log(Object.prototype.toString.call(arr));
+
+  // var date = new Date();
+  // console.log(date.toString());
+  // console.log(Object.prototype.toString.apply(date));
+
+  /*
+    思考 如果 我们能够调用数组的 toString方法 是不是 能够获取到 [object Array]
+  */
+  // 1.对象.toString() 调用的是哪个位置的toString
+  var arr = [1, 2, 3];
+  var obj = {};
+  console.log(arr.toString());
+  // toString(); 把调用 toString的那个对象的 类型 格式化为[object Object];
+  console.log(obj.toString());
+
+  // 2.如果不能直接调到那个位置的 toString 如何 曲线调到?
+  // 能不能调用Object原型中的 toString方法 但是传入自定义的 this -->call apply
+  console.log(Object.prototype.toString.call(arr)); // 凭空来想
+
+  // 自己实现一个 类似的 toString方法
+  // 1.让所有原型链 指向 Object的 对象 都能够使用一个方法
+  // 2.打印出 类似于 [object Array] [object Date];
+  Object.prototype.myHahahatoString = function () {
+    // console.log('我自己的toString');
+    // console.log(typeof this);// object
+    //          自己   原型      构造函数  函数的名字
+    // console.log(this.__proto__.constructor.name);// Array Object Date
+    var result = '';
+    result += '[';
+    result += (typeof this);
+    result += ' ';
+    result += this.__proto__.constructor.name;
+    result += ']'
+    console.log(result);
+    return result;
+  }
+
+  var obj2 = {}
+  var arr2 = []
+  var date = new Date();
+  console.log(obj2.myHahahatoString());
+  console.log(arr2.myHahahatoString());
+  console.log(date.myHahahatoString());
+</script>

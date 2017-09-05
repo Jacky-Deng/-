@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  // 
+  function func() {
+    console.log(this);
+  }
+  func.call();
+
+  // 函数赋值给 对象的 属性
+  var obj = {
+    func: func
+  }
+  obj.func.call();
+
+  obj.func.call('西兰花');
+  obj.func.call(998);
+
+  obj.func.call(null);
+
+
+  // 注意点
+  // 调用 call/apply方法时,如果不传入任何的参数 this 指向的是?--->window
+  // 调用 call/apply方法时,传入的如果是值类型,会被包装为对应的引用类型?
+  // 调用 call/apply方法时,传入的如果是 null undefined 指向window
+</script>

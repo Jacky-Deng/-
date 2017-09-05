@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+  <h2>面向对象的 三大特性之一 继承
+      封装
+      继承 
+      多态 (js中没有多态)
+  </h2>
+</body>
+</html>
+<script>
+  // 继承 原型
+  // 原型 混入
+  // 混入
+
+  function Student(){
+    this.class = '前端';
+    this.computer = 'window'
+  }
+
+  // 来了一个新的学员
+  // 用它来 实现 继承
+  function beautifulStudent(){
+      console.log(this);// 就是实例化出的对象
+      // 改变调用 Student函数中的 this
+      // Student();
+      Student.call(this);
+      this.yanzhi = '爆表';
+  }
+
+  // 使用 上下文模式来实现
+
+  // 构造函数来调用
+  var newStudent = new beautifulStudent();
+  console.log(newStudent);
+
+</script>

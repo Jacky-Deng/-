@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <h2>沙箱模式</h2>
+</body>
+
+</html>
+<script>
+  /*
+      沙箱-基本概念
+        1. 古代电视剧,行军打仗 --- 沙盘
+           用来模拟 真实环境
+        2. 售楼部的 模型 ---楼盘模拟
+           用来模拟 楼盘  
+           VR 模拟 
+        3. 虚拟机
+          window电脑上---跑一个 mac os  linux window7
+          虚拟机--(软件) -
+            new 一个 mac os
+            new 一个 linux 
+            virtualbox
+              要玩的流畅 需要 内存较大
+              试毒
+        用来模拟一些真实的世界(环境)
+      沙箱对真实世界会不会有影响
+        不会有影响的--只是一个模拟环境
+
+      js中 有什么作用
+      框架 会利用 自执行函数 来模拟一个 封闭的环境
+    */
+
+  (function (b) {
+  // (function () {
+    // 定义 变量
+    var jQuery = '中分还带波浪,萌不萌';
+    // 逻辑语句
+
+    // 对外提供 访问的方式
+    // 可以通过 形参 window 获取 外部 传入的 window
+    b.jQuery = window.$ = jQuery;
+
+    // 沙箱目的是 跟外界隔离
+    // 既然是为了隔离 为什么 需要 传入window 不传 效果一不一样?
+      // 不传入 效果是一样的
+      // 传入的目的,主要是为了保证 沙箱的一个 封装性
+      // 为了让封装性体现的更加淋漓尽致 传入window  而是通过 自己内部的 形参来间接使用
+      // 压缩代码时 规则 变量的声明 以及变量的使用 由很长的变量名 变为 a b c
+      // 如果window不作为 形参传入 那么 是压缩不了 window这个单词的
+
+  })(window);
+  // })();
+
+  (function($){
+    $.fn.extend({
+      sayHello:function(){}
+    })
+  })(jQuery)
+
+
+  console.log($);
+
+  // 沙箱模式的适用情况
+  // 1.框架的封装(jQuery 类库 函数库)
+  // 2.插件
+  // 3.组件 一个一个的 js文件
+</script>

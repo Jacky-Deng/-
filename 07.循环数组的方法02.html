@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <h2>循环方法</h2>
+</body>
+
+</html>
+<script>
+  // Map方法 也是 ES5中推出的循环数组的方法
+  var priceArr = [998, 10, 5, 2, 999];
+
+  // 使用map来循环
+  // 使用方法 既然跟 forEach一样
+  // 还能够返回一个 新的数组
+  // map方法 可以 获取到 我在 回调函数中 返回的元素 最后拼接处一个 新的数组 给你
+  // 可以非常方便的 对元素进行操纵,返回一个 根据自己需求 操纵完毕的 数组
+  var result = priceArr.map(function (value, index, arr) {
+    // console.log(value,index,arr);
+    // return 12;
+    // 原数组的元素 放大一倍
+    // return value*2;
+
+    // 把原数组中元素 都变为 字符串
+    // return value.toString();
+    return (value + '');
+  })
+  console.log(result);
+
+  // 自己实现一个 map方法 通过数组的 实例对象调用
+  Array.prototype.myMap = function (callBack) {
+    var newArr = [];
+    // 循环数组
+    for (var i = 0; i < this.length; i++) {
+      var back = callBack(this[i], i, this);
+      newArr.push(back);
+    }
+    return newArr;
+  }
+
+  // 测试 自己的 map
+  var arr = [12, 14, 20, 30];
+  var newArr = arr.myMap(function (value, index, arr) {
+    console.log(value, index, arr);
+    return value * 0.8;
+  })
+  console.log(newArr);
+</script>
